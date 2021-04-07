@@ -93,9 +93,7 @@ class RecepieController {
         }).catch(error => {
           response.json({erro: 'Erro ao excluir receita', message: error.sqlMessage });
         });
-  }
-
-  
+  }  
 
 }
 
