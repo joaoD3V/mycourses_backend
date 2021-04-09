@@ -93,7 +93,24 @@ class RecepieController {
         }).catch(error => {
           response.json({erro: 'Erro ao excluir receita', message: error.sqlMessage });
         });
-  }  
+  }
+  
+  listRecepieSearchName(request, response){
+    const { userid, namerecepie } = request.query;
+    database.select("*").table("receitas")
+      .where('id_usuarios', userid)
+      .andWhere('nome', 'like', `${namerecepie}%`)
+      .then(recepie => {
+        if(recepie.length > 0 ){
+          response.json(recepie);
+        }
+        else{
+          response.json({erro: 'Receita não encontrada'});
+        }
+      }).catch(error => {
+        response.json({erro: 'Erro ao listar receita', message: error.sqlMessage });
+      });    
+  }
 
 }
 

@@ -14,6 +14,8 @@ router.post('/api/recepies', RecepieController.createRecepie);
 router.get('/api/recepies', RecepieController.listRecepies);
 router.patch('/api/recepies', RecepieController.updateRecepie);
 
+router.get('/api/recepies-search', RecepieController.listRecepieSearchName);
+
 router.delete('/api/recepie-information', RecepieController.deleteRecepie);
 router.get('/api/recepie-information', RecepieController.listRecepie);
 
