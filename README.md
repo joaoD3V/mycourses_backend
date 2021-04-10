@@ -1,4 +1,4 @@
-##### Desafio Perithus - Sistema de Gerenciamento Financeiro
+##### Desafio RG Sistemas - Sistema de Cadastro de Receitas Culinárias
 
 # My Recepies - Backend
 
