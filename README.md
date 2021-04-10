@@ -16,7 +16,9 @@ Sistema Web de cadastro de receitas culinárias, com a finalidade de deixar as r
 
 ### Observação
 
-Nos arquivos do teste, foi disponibilizado um script SQL que **precisa obrigatoriamente** ser rodado no banco de dados antes dos passos de instalação das dependências do projeto. Esse arquivo se encontra na pasta script_mysql, dentro da raiz do projeto.
+- Nos arquivos do teste, foi disponibilizado um script SQL que **precisa obrigatoriamente** ser rodado no banco de dados antes dos passos de instalação das dependências do projeto. Esse arquivo se encontra na pasta script_mysql, dentro da raiz do projeto.
+
+- Execute o backend antes do frontend para que o sistema possa ter o funcionamento conforme esperado. O backend está rodando na porta 3333.
 
 ------------
 
@@ -33,4 +35,7 @@ yarn
 yarn start
 ```
 
+- Para saber se o backend está funcionando corretamente, aguarde a mensagem **"Aplicação rodando na porta 3333"** aparecer no seu terminal.
+
+- Deixe seu backend aberto no segundo plano em execução e execute agora o frontend.
 
