@@ -1,28 +1,25 @@
 const database = require('../database/connection');
 
-class RecepieController {
-  createRecepie(request, response) {
-    const { userID, categoryID, nameRecepie, time, portions, preparation, ingredients } = request.body;
-    const alterado_em = new Date();
-    const criado_em = new Date();
-    const recepie = {
-      id_usuarios: Number(userID),
-      id_categorias: Number(categoryID),
-      nome: nameRecepie,
-      tempo_preparo_minutos: Number(time),
-      porcoes: Number(portions),
-      modo_preparo: preparation.join(','),
-      ingredientes: ingredients.join(','),
-      criado_em,
-      alterado_em
+class LessonController {
+  async createLesson(request, response) {
+    const { moduleID, name, videoURL, startLessonDate } = request.body;
+    const created_at = new Date();
+    const updated_at = new Date();
+    const lesson = {
+      id_modules: Number(moduleID),
+      name,
+      video_url: videoURL,
+      startLessonDate: new Date(startLessonDate),
+      created_at,
+      updated_at
     }
 
-    database.insert(recepie)
-      .table("receitas")
+    await database.insert(lesson)
+      .table("lessons")
       .then(() => {
-        response.json(recepie);
+        response.json(lesson);
       }).catch(error => {
-        response.json({erro: 'Erro ao criar nova receita', message: error.sqlMessage });
+        response.json({erro: 'Erro ao criar nova aula', message: error.sqlMessage });
       });
   }
 
@@ -114,4 +111,4 @@ class RecepieController {
 
 }
 
-module.exports = new RecepieController();
+module.exports = new LessonController();

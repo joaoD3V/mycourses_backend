@@ -4,68 +4,55 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
--- -----------------------------------------------------
--- Schema teste_receitas_rg_sistemas
--- -----------------------------------------------------
+
+CREATE SCHEMA IF NOT EXISTS `mycourses` ;
+USE `mycourses` ;
 
 -- -----------------------------------------------------
--- Schema teste_receitas_rg_sistemas
+-- Table `mycourses`.`administrator`
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `teste_receitas_rg_sistemas` ;
-USE `teste_receitas_rg_sistemas` ;
-
--- -----------------------------------------------------
--- Table `teste_receitas_rg_sistemas`.`usuarios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `teste_receitas_rg_sistemas`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `mycourses`.`administrators` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '\n',
-  `nome` VARCHAR(100) NULL,
-  `login` VARCHAR(100) NOT NULL,
-  `senha` VARCHAR(100) NOT NULL,
-  `criado_em` DATETIME NOT NULL,
-  `alterado_em` DATETIME NOT NULL,
+  `name` VARCHAR(100) NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password_hash` VARCHAR(100) NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC))
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `teste_receitas_rg_sistemas`.`categorias`
+-- Table `mycourses`.`modules`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `teste_receitas_rg_sistemas`.`categorias` (
+CREATE TABLE IF NOT EXISTS `mycourses`.`modules` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NULL,
+  `name` VARCHAR(100) NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC))
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `teste_receitas_rg_sistemas`.`receitas`
+-- Table `mycourses`.`lessons`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `teste_receitas_rg_sistemas`.`receitas` (
+CREATE TABLE IF NOT EXISTS `mycourses`.`lessons` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_usuarios` INT(10) UNSIGNED NOT NULL,
-  `id_categorias` INT(10) UNSIGNED NULL,
-  `nome` VARCHAR(45) NULL,
-  `tempo_preparo_minutos` INT UNSIGNED NULL,
-  `porcoes` INT UNSIGNED NULL,
-  `modo_preparo` TEXT NOT NULL,
-  `ingredientes` TEXT NULL,
-  `criado_em` DATETIME NOT NULL,
-  `alterado_em` DATETIME NOT NULL,
+  `id_modules` INT(10) UNSIGNED NULL,
+  `name` VARCHAR(45) NULL,
+  `video_url` VARCHAR(45) NULL,
+  `startLessonDate` DATETIME NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_receitas_1_idx` (`id_usuarios` ASC),
-  INDEX `fk_receitas_2_idx` (`id_categorias` ASC),
-  CONSTRAINT `fk_receitas_1`
-    FOREIGN KEY (`id_usuarios`)
-    REFERENCES `teste_receitas_rg_sistemas`.`usuarios` (`id`)
+  INDEX `fk_modules_1_idx` (`id_modules` ASC),
+  CONSTRAINT `fk_modules_1`
+    FOREIGN KEY (`id_modules`)
+    REFERENCES `mycourses`.`modules` (`id`)
     ON DELETE RESTRICT
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_receitas_2`
-    FOREIGN KEY (`id_categorias`)
-    REFERENCES `teste_receitas_rg_sistemas`.`categorias` (`id`)
-    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -74,24 +61,11 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
--- -----------------------------------------------------
--- Data for table `teste_receitas_rg_sistemas`.`categorias`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `teste_receitas_rg_sistemas`;
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (1, 'Bolos e tortas doces');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (2, 'Carnes');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (3, 'Aves');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (4, 'Peixes e frutos do mar');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (5, 'Saladas, molhos e acompanhamentos');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (6, 'Sopas');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (7, 'Massas');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (8, 'Bebidas');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (9, 'Doces e sobremesas');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (10, 'Lanches');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (11, 'Prato Único');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (12, 'Light');
-INSERT INTO `teste_receitas_rg_sistemas`.`categorias` (`id`, `nome`) VALUES (13, 'Alimentação Saudável');
 
+START TRANSACTION;
+USE `mycourses`;
+INSERT INTO `mycourses`.`administrators` (`name`, `email`, `password_hash`, `created_at`, `updated_at` ) VALUES ('admin', 'admin@verzel.com.br', '12345678', NOW(), NOW());
+INSERT INTO `mycourses`.`modules` (`name`, `created_at`, `updated_at`) VALUES ('Sistemas de Informação', NOW(), NOW());
+INSERT INTO `mycourses`.`lessons` (`id_modules`, `name`, `video_url`, `startLessonDate`, `created_at`, `updated_at` ) VALUES ('1', 'Introdução a Programação', 'https://www.youtube.com/embed/mq-mM8UdEDM', NOW(), NOW(), NOW());
 COMMIT;
 
