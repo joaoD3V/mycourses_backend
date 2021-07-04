@@ -1,33 +1,35 @@
-const connection = require('../database/connection');
 const express = require('express');
 const router = express.Router();
-const UserController = require('../controllers/UserController');
-const { request, response } = require('express');
 const LessonController = require('../controllers/LessonController');
 const AdministratorController = require('../controllers/AdministratorController');
+const ModulesController = require('../controllers/ModulesController');
+const TokenController = require('../controllers/TokenController');
+const loginRequired = require('../middlewares/loginRequired');
 
-router.post('/api/lesson', LessonController.createLesson);
-router.get('/api/lesson/:id', LessonController.listLesson);
+router.post('/api/lesson', loginRequired, LessonController.createLesson);
+router.get('/api/lesson/:id', loginRequired, LessonController.listLesson);
 router.get('/api/lesson', LessonController.listLessons);
-router.put('/api/lesson/:id', LessonController.updateLesson);
-router.delete('/api/lesson/:id', LessonController.deleteLesson);
+router.put('/api/lesson/:id', loginRequired, LessonController.updateLesson);
+router.delete('/api/lesson/:id', loginRequired, LessonController.deleteLesson);
 
-router.post('/api/administrator', AdministratorController.createAdministrator);
-router.get('/api/administrator/:id', AdministratorController.listAdministrator);
-router.get('/api/administrator', AdministratorController.listAdministrators);
-router.put('/api/administrator/:id', AdministratorController.updateAdministrator);
-router.delete('/api/administrator/:id', AdministratorController.deleteAdministrator);
+router.post('/api/administrator', loginRequired, AdministratorController.createAdministrator);
+router.get('/api/administrator/:id', loginRequired, AdministratorController.listAdministrator);
+router.get('/api/administrator', loginRequired, AdministratorController.listAdministrators);
+router.put('/api/administrator/:id', loginRequired, AdministratorController.updateAdministrator);
+router.delete('/api/administrator/:id', loginRequired, AdministratorController.deleteAdministrator);
 
-// router.post('/api/recepies', RecepieController.createRecepie);
-// router.get('/api/recepies', RecepieController.listRecepies);
-// router.patch('/api/recepies', RecepieController.updateRecepie);
+router.post('/api/module', loginRequired, ModulesController.createModule);
+router.get('/api/module/:id', loginRequired, ModulesController.listModule);
+router.get('/api/module', ModulesController.listModules);
+router.put('/api/module/:id', loginRequired, ModulesController.updateModule);
+router.delete('/api/module/:id', loginRequired, ModulesController.deleteModule);
 
-// router.get('/api/recepies-search', RecepieController.listRecepieSearchName);
+router.get('/api/lesson/module/:id', LessonController.listModuleLessons);
 
-// router.delete('/api/recepie-information', RecepieController.deleteRecepie);
-// router.get('/api/recepie-information', RecepieController.listRecepie);
 
-// router.get('/api/categories', CategoryController.listCategories);
+router.post('/api/token', TokenController.createToken);
+
+
 
 
 module.exports = router;

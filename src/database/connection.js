@@ -1,10 +1,13 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 var knex = require('knex')({
-  client: 'mysql2',
+  client: process.env.DATABASE_CLIENT,
   connection: {
-      host : 'localhost',     
-      user : 'root',       
-      password : 'root',
-      database : 'mycourses'
+      host : process.env.DATABASE_HOST,     
+      user : process.env.DATABASE_USER,       
+      password : process.env.DATABASE_PASSWORD,
+      database : process.env.DATABASE
    }
 });
 module.exports = knex

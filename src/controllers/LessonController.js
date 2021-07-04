@@ -43,6 +43,17 @@ class LessonController {
     }
   }
 
+  async listModuleLessons(request, response) {
+    try{
+      const { id } = request.params;
+      
+      const lessons = await database.select("*").table("lessons").where('id_modules', id);
+      return response.json(lessons);
+    } catch(error) {
+      return response.json({erro: 'Erro ao listar aulas.', message: error.sqlMessage });
+    }
+  }
+
   async updateLesson(request, response){
     try{
       const { id } = request.params;

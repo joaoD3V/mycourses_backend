@@ -64,8 +64,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 START TRANSACTION;
 USE `mycourses`;
-INSERT INTO `mycourses`.`administrators` (`name`, `email`, `password`, `created_at`, `updated_at` ) VALUES ('admin', 'admin@verzel.com.br', '$2b$10$n41h5F1xugVkCecwtyRr6Ot/K.HaiP/kGF.JPX1ZQR2tugwdN2fjK', NOW(), NOW());
-INSERT INTO `mycourses`.`modules` (`name`, `created_at`, `updated_at`) VALUES ('Sistemas de Informação', NOW(), NOW());
-INSERT INTO `mycourses`.`lessons` (`id_modules`, `name`, `video_url`, `startLessonDate`, `created_at`, `updated_at` ) VALUES ('1', 'Introdução a Programação', 'https://www.youtube.com/embed/mq-mM8UdEDM', NOW(), NOW(), NOW());
+INSERT INTO `mycourses`.`administrators` (`name`, `email`, `password`, `created_at`, `updated_at` ) VALUES ('admin', 'admin@mycourses.com.br', '$2b$10$n41h5F1xugVkCecwtyRr6Ot/K.HaiP/kGF.JPX1ZQR2tugwdN2fjK', NOW(), NOW());
+INSERT INTO `mycourses`.`modules` (`name`, `created_at`, `updated_at`) VALUES ('Projeto Frontend', NOW(), NOW());
+INSERT INTO `mycourses`.`lessons` (`id_modules`, `name`, `video_url`, `startLessonDate`, `created_at`, `updated_at` ) VALUES ('1', 'Apresentação do ReactJS e do projeto', 'https://www.youtube.com/embed/mq-mM8UdEDM', NOW(), NOW(), NOW());
+INSERT INTO `mycourses`.`modules` (`name`, `created_at`, `updated_at`) VALUES ('Projeto Backend', NOW(), NOW());
+INSERT INTO `mycourses`.`lessons` (`id_modules`, `name`, `video_url`, `startLessonDate`, `created_at`, `updated_at` ) VALUES ('2', 'Apresentação do projeto backend Node JS', 'https://www.youtube.com/embed/gYhj_8sEYd4', NOW(), NOW(), NOW());
 COMMIT;
 
