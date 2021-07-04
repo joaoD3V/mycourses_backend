@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `mycourses`.`administrators` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '\n',
   `name` VARCHAR(100) NULL,
   `email` VARCHAR(100) NOT NULL,
-  `password_hash` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
@@ -64,7 +64,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 START TRANSACTION;
 USE `mycourses`;
-INSERT INTO `mycourses`.`administrators` (`name`, `email`, `password_hash`, `created_at`, `updated_at` ) VALUES ('admin', 'admin@verzel.com.br', '12345678', NOW(), NOW());
+INSERT INTO `mycourses`.`administrators` (`name`, `email`, `password`, `created_at`, `updated_at` ) VALUES ('admin', 'admin@verzel.com.br', '$2b$10$n41h5F1xugVkCecwtyRr6Ot/K.HaiP/kGF.JPX1ZQR2tugwdN2fjK', NOW(), NOW());
 INSERT INTO `mycourses`.`modules` (`name`, `created_at`, `updated_at`) VALUES ('Sistemas de Informação', NOW(), NOW());
 INSERT INTO `mycourses`.`lessons` (`id_modules`, `name`, `video_url`, `startLessonDate`, `created_at`, `updated_at` ) VALUES ('1', 'Introdução a Programação', 'https://www.youtube.com/embed/mq-mM8UdEDM', NOW(), NOW(), NOW());
 COMMIT;

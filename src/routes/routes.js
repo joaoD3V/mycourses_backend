@@ -4,11 +4,19 @@ const router = express.Router();
 const UserController = require('../controllers/UserController');
 const { request, response } = require('express');
 const LessonController = require('../controllers/LessonController');
-const CategoryController = require('../controllers/CategoryController');
+const AdministratorController = require('../controllers/AdministratorController');
 
 router.post('/api/lesson', LessonController.createLesson);
 router.get('/api/lesson/:id', LessonController.listLesson);
-// router.get('/api/users', UserController.listUsers);
+router.get('/api/lesson', LessonController.listLessons);
+router.put('/api/lesson/:id', LessonController.updateLesson);
+router.delete('/api/lesson/:id', LessonController.deleteLesson);
+
+router.post('/api/administrator', AdministratorController.createAdministrator);
+router.get('/api/administrator/:id', AdministratorController.listAdministrator);
+router.get('/api/administrator', AdministratorController.listAdministrators);
+router.put('/api/administrator/:id', AdministratorController.updateAdministrator);
+router.delete('/api/administrator/:id', AdministratorController.deleteAdministrator);
 
 // router.post('/api/recepies', RecepieController.createRecepie);
 // router.get('/api/recepies', RecepieController.listRecepies);
