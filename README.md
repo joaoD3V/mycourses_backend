@@ -54,6 +54,7 @@ Sistema Web de cadastro e exibição de módulos e aulas, com a finalidade de de
 - Caso dê algum erro de execução do script no *MySQL Workbench*, basta ignorar a mensagem de erro clicando em "OK" e forçar a execução do script clicando no primeiro ícone do raio ⚡. Em seguida, ao atualizar os schemas, o schema "mycourses" irá aparecer.
 - Execute o script antes de executar o backend, para poder fazer a criação do schema, das tabelas e popular as mesmas.
 - Execute o backend antes do frontend para que o sistema possa ter o funcionamento conforme esperado. O backend está rodando na porta 3333.
+- O projeto foi desenvolvido em um ambiente Linux (Ubuntu).
 
 Algumas observações importantes sobre o arquivo **.env**:
 - *DATABASE_CLIENT=mysql2* -> (Cliente Banco de Dados - **Não deve ser alterado**)
