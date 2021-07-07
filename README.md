@@ -63,10 +63,12 @@ Algumas observações importantes sobre o arquivo **.env**:
 - *DATABASE_PASSWORD=root*  -> (Senha do usuário do banco de dados - **Pode ser alterado de acordo com a sua senha do usuário do MySQL Workbench**)
 - *DATABASE=mycourses* -> (Banco de Dados - **Não deve ser alterado**)
 
+------------
 
-  
+### Acesso ao Painel Administrativo através do login
+- E-mail: admin@mycourses.com.br
 
-
+- Senha: 12345678
 
 ------------
 
